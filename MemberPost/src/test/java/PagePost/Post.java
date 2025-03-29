@@ -1,9 +1,6 @@
 package PagePost;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -17,17 +14,24 @@ import java.util.List;
 @ToString
 public class Post {
 
+    @Id
+    @Column(name="post_no")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long postno;
+
     @Column(name="post_code")
-    private long code;
+    private long postCode;
 
     @Column(name="post_title")
-    private String title;
+    private String postTitle;
 
     @Column(name="post_content")
-    private String content;
+    private String postContent;
 
-    @OneToMany(mappedBy="comment_content")
-    private List<Comment> commentContent;
+    @OneToMany(mappedBy="post",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
+
 
 
 }

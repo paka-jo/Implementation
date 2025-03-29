@@ -17,12 +17,19 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentNo;
 
+    @Column(name="comment_code")
+    private long commentCode;
+
     @Column(name="comment_content")
     private String commentContent;
 
     @ManyToOne
+    @JoinColumn(name="post_no")  // Post의 post_no와 매핑
+    private Post post;
+
+    @ManyToOne
     @JoinColumn(name="member_information")
-    private Memberin memberInformation;
+    private Member memberInformation;
 
 
 

@@ -6,7 +6,10 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Tests {
 
@@ -36,18 +39,19 @@ public class Tests {
     @DisplayName("회원 정보")
     @Test
     public void MemberRepositoryTest() {
-        Memberin member1 = new Memberin();
+        Member member1 = new Member();
         member1.setMemberCode(123);
         member1.setMemberId("user01");
         member1.setMemberName("alpaka");
 
-        Memberin member2 = new Memberin();
+        Member member2 = new Member();
         member2.setMemberCode(267);
         member2.setMemberId("user02");
         member2.setMemberName("camel");
 
-        EntityTransaction transaction = entityManager.getTransaction(); //
+        EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
+
 
         try {
             entityManager.persist(member1);
@@ -55,57 +59,65 @@ public class Tests {
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
-            throw new RuntimeException();
-        }
-        String jpql = "select m.memberNo from pagePost_Member m";
-        List<Integer> members = entityManager.createQuery(jpql, Integer.class).getResultList();
-
-        assertThat(members.size()).isEqualTo(1);
-        for (Long memberNo : members) {
-            System.out.println(memberNo);
+            throw new RuntimeException(e);
         }
 
+        String jpql = "SELECT m from pagePost_Member m";
+        List<Member> members = entityManager.createQuery(jpql, Member.class).getResultList();
+
+        assertEquals(2, members.size(), "Should have 2 members in the database");
 
     }
 
     @DisplayName("게시물")
     @Test
-    public void PostAndCommentCreation() {
-        Memberin member = new Memberin();
-        member.setMemberCode(123);
-        member.setMemberId("user01");
-        member.setMemberName("alpaka");
+    public void PostAndCommentTest() {
+
+        Member member1 = new Member();
+        member1.setMemberCode(123);
+        member1.setMemberId("user01");
+        member1.setMemberName("alpaka");
+
 
         Post post = new Post();
-        post.setPostTitle("TEST");
-        post.setPostContent("TEST CONTENT");
+        post.setPostCode(1);
+        post.setPostTitle("TestPost");
+        post.setPostContent("TestPostContent");
 
-        Comment comment1 = new Comment();
-        comment1.setCommentContent("Comment1");
-        comment1.setMemberInformation(member);
-        comment1.setPost(Post);
+        if (post.getComments() == null) {
+            post.setComments(new ArrayList<>());
+        }
 
+        Comment comment = new Comment();
+        comment.setCommentCode(1);
+        comment.setCommentContent("HaHa");
+        comment.setMemberInformation(member1);
 
-        post.getCommentContent().add(comment1);
-
-
-        assertThat(foundPost.getPostTitle()).isEqualTo("TEST");
-        assertThat(foundPost.getPostContent()).isEqualTo("TEST CONTENT");
+        post.getComments().add(comment);
 
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
 
         try {
-            entityManager.persist(member);
+            entityManager.persist(member1);
             entityManager.persist(post);
-            entityManager.persist(comment1);
-
+            entityManager.persist(comment);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
 
 
+        assertEquals("TestPost", post.getPostTitle(), "포스트 제목이 일치해야 합니다");
+        assertEquals("TestPostContent", post.getPostContent(), "포스트 내용이 일치해야합니다");
+        assertEquals("HaHa", comment.getCommentContent(), "댓글 내용이 일치해야합니다");
+
+
+
+
     }
-}
+
+
+
+    }

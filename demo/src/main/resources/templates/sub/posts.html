@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8" >
+    <title>게시판</title>
+    <style>
+        table {
+            margin: auto;
+        }
+        input[type="text"] {
+            border: 1.5px rgb(68, 136, 244) solid;
+            width: 500px;
+            height: 30px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        textarea {
+            border: 1.5px rgb(68, 136, 244) solid;
+            width: 500px;
+            height: 400px;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-top: 10px;
+            resize: none;
+        }
+        .header {
+            height: 50px;
+        }
+        input[type="submit"] {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border: 0;
+            outline: 1.5px rgb(68, 136, 244) solid;
+            border-radius: 5px;
+            padding-left: 10px;
+            background-color: rgb(164, 199, 255);
+        }
+        input[type="submit"]:active {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 5px;
+            outline: 1.5px rgb(27, 76, 155) solid;
+            padding-left: 10px;
+            background-color: rgb(68, 136, 244);
+        }
+    </style>
+</head>
+<body>
+<form action="/sub/posts" method="post">
+    <table>
+        <tr><td><h1>게시글</h1></td></tr>
+        <tr><td class="header">Title</td></tr>
+        <tr><td><input type="text" placeholder="제목을 입력하세요" name="title"></td></tr>
+        <tr><td class="header">Nickname</td></tr>
+        <tr><td><input type="text" placeholder="닉네임을 입력하세요" name="nickname"></td></tr>
+        <tr><td class="header">Comment</td></tr>
+        <tr><td><textarea placeholder="내용을 입력하세요" name="content"></textarea></td></tr>
+        <tr><td><input type="submit" value="등록" onclick="submitAndRedirect()" /></td></tr>
+
+        <script>
+            function submitAndRedirect() {
+                alert('작성 완료!');
+                window.location.replace('/sub/list');
+            }
+        </script>
+    </table>
+</form>
+</body>
+</html>
+
+
+
+

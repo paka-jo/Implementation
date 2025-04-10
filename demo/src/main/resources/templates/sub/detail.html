@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 상세</title>
+</head>
+<body>
+<h2 th:text="${post.title}">제목</h2>
+<h2 th:text="${post.nickname}">닉네임</h2>
+
+<p><strong>작성일:</strong> <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
+<hr>
+<p th:text="${post.content}">내용</p>
+
+<a href="/sub/list">← 목록으로 돌아가기</a>
+</body>
+</html>

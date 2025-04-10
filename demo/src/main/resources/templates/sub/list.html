@@ -67,7 +67,7 @@
     <tr th:each="post : ${postList}" class="body">
         <td th:text="${post.id}"></td>
         <td class="title">
-            <a th:href="@{/detail/{id}(id=${post.id})}" th:text="${post.title}"></a>
+            <a th:href="@{/sub/detail/{id}(id=${post.id})}" th:text="${post.title}"></a>
         </td>
         <td th:text="${post.nickname}"></td>
         <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>

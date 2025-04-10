@@ -20,7 +20,11 @@ public class PostDTO {
         this.createdAt = createdAt;
     }
 
-    public PostDTO(long postCode, String postTitle, String pageNickname, LocalDateTime postCreatedAt) {
+    public PostDTO(Long postCode, String postTitle, String pageNickname, LocalDateTime postCreatedAt) {
+        this.id = postCode;
+        this.title = postTitle;
+        this.nickname = pageNickname;
+        this.createdAt = postCreatedAt;
     }
 
     public Long getId() {

@@ -21,12 +21,12 @@ import java.util.List;
 public class PostEntity {
 
     @Id
-    @Column(name="post_code")
+    @Column(name="post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postCode;
+    private Long postId;
 
-    @Column(name="page_id")
-    private String pageId;
+    @Column(name="user_id")
+    private String userId;
 
     @Column(name="post_title")
     private String postTitle;
@@ -34,8 +34,8 @@ public class PostEntity {
     @Column(name="post_content")
     private String postContent;
 
-    @Column(name="page_nickname")
-    private String pageNickname;
+    @Column(name="user_nickname")
+    private String userNickname;
 
     // postcreatat 필드를 JOSN으로 직렬화 할 때 사용
     @Column(name="post_createdAt")

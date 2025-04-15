@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -36,7 +37,7 @@ public class PostController {
     }
 
     @GetMapping("/posts") //게시물 작성 페이지 생성
-    public String createPostForm(Model model) {
+    public String createPostForm(Model model, PostDTO post) {
         try {
             model.addAttribute("postDTO", new PostDTO());
             return "sub/posts";
@@ -51,6 +52,7 @@ public class PostController {
     public String createPost(@ModelAttribute PostDTO postDTO, Model model) {
         try {
             postService.savePost(postDTO);
+            logger.info("postCreatedAt: {}", postDTO.getPostCreatedAt());
             return "redirect:/sub/list";
         } catch (Exception e) {
             logger.error("Error in createPost", e);
@@ -59,8 +61,8 @@ public class PostController {
         }
     }
 
-    @GetMapping("/detail/{id}") //작성한 글 조회
-    public String findPostById(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/detail/{PostId}") //작성한 글 조회
+    public String findPostById(@PathVariable("PostId") Long id, Model model) {
         try {
             PostDTO post = postService.findPostById(id);
             model.addAttribute("post", post);
@@ -70,6 +72,7 @@ public class PostController {
             model.addAttribute("errorMessage", "게시물을 불러오는 데 실패했습니다.");
             return "error";
         }
+
     }
 
 

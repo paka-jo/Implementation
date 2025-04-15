@@ -16,21 +16,21 @@ import lombok.Setter;
 public class CommentEntity {
 
     @Id
-    @Column(name="comment_code")
+    @Column(name="comment_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long commentCode;
+    private long commentId;
 
 
-    @Column(name="page_id") // 회원 아이디
-    private String pageId;
+    @Column(name="User_id") // 회원 아이디
+    private String UserId;
 
     @Column(name="comment_content")
     private String commentContent;
 
-    @Column(name="page_nickname")
-    private String pageNickname;
+    @Column(name="user_nickname")
+    private String UserNickname;
 
     @ManyToOne
-    @JoinColumn(name = "post_code")
+    @JoinColumn(name = "post_id")
     private PostEntity post;
 }

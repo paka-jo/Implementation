@@ -2,33 +2,43 @@ package com.example.demo.dto;
 
 public class CommentDTO {
 
-    private Long id;
-    private String nickname;
-    private String content;
+    private Long commentId;
+    private Long userId;
+    private String userNickname;
+    private String commentContent;
+
 
     public CommentDTO () {}
 
-    public Long getId() {
-        return id;
+    public Long getCommentId() {
+        return commentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
     }
 
-    public String getNickname() {
-        return nickname;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getContent() {
-        return content;
+    public String getUserNickname() {
+        return userNickname;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
+
+    public String getCommentContent() {
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
     }
 }

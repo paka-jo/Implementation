@@ -4,66 +4,61 @@ import java.time.LocalDateTime;
 
 public class PostDTO {
 
-    private Long id;
-    private String title;
-    private String content; //내용
-    private String nickname;
-    private LocalDateTime createdAt;
+    private Long postId;
+    private Long userId;
+    private String postTitle;
+    private String postContent; //내용
+    private String userNickname;
+    private LocalDateTime postCreatedAt;
 
     public PostDTO() {}
 
-    public PostDTO(Long id, String title, String content, String nickname, LocalDateTime createdAt) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.nickname = nickname;
-        this.createdAt = createdAt;
+    public Long getPostId() {
+        return postId;
     }
 
-    public PostDTO(Long postCode, String postTitle, String pageNickname, LocalDateTime postCreatedAt) {
-        this.id = postCode;
-        this.title = postTitle;
-        this.nickname = pageNickname;
-        this.createdAt = postCreatedAt;
+    public void setPostId(Long pageId) {
+        this.postId = pageId;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPostTitle() {
+        return postTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
     }
 
-    public String getContent() {
-        return content;
+    public String getPostContent() {
+        return postContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUserNickname() {
+        return userNickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUserNickname(String userNickName) {
+        this.userNickname = userNickName;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getPostCreatedAt() {
+        return postCreatedAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setPostCreatedAt(LocalDateTime postCreatedAt) {
+        this.postCreatedAt = postCreatedAt;
     }
 }
+

@@ -3,7 +3,7 @@
     <persistence-unit name="jpatest">
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/noticeboarddb"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/noticeboarddb?serverTimezone=Asia/Seoul"/>
             <property name="jakarta.persistence.jdbc.user" value="paka"/>
             <property name="jakarta.persistence.jdbc.password" value="paka"/>
             <property name="hibernate.show_sql" value="true"/>

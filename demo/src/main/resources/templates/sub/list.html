@@ -65,12 +65,12 @@
     </tr>
     <tbody>
     <tr th:each="post : ${postList}" class="body">
-        <td th:text="${post.id}"></td>
+        <td th:text="${post.postId}"></td>
         <td class="title">
-            <a th:href="@{/sub/detail/{id}(id=${post.id})}" th:text="${post.title}"></a>
+            <a th:href="@{/sub/detail/{id}(id=${post.postId})}" th:text="${post.postTitle}"></a>
         </td>
-        <td th:text="${post.nickname}"></td>
-        <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${post.userNickname}"></td>
+        <td th:text="${#temporals.format(post.postCreatedAt, 'yyyy-MM-dd')}"></td>
     </tr>
     </tbody>
 </table>

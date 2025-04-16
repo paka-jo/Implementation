@@ -70,7 +70,9 @@
             <a th:href="@{/sub/detail/{id}(id=${post.postId})}" th:text="${post.postTitle}"></a>
         </td>
         <td th:text="${post.userNickname}"></td>
-        <td th:text="${#temporals.format(post.postCreatedAt, 'yyyy-MM-dd')}"></td>
+        <td th:text="${post.postCreatedAt != null} ?
+     ${#temporals.format(post.postCreatedAt, 'yyyy-MM-dd')} : '날짜 없음'">
+</td>
     </tr>
     </tbody>
 </table>

@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class PostEntity {
 
     // postcreatat 필드를 JOSN으로 직렬화 할 때 사용
     @Column(name="post_createdAt")
+    @CreationTimestamp
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime postCreatedAt;
 

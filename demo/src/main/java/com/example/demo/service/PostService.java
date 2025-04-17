@@ -18,14 +18,12 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
     private static final Logger logger = LoggerFactory.getLogger(PostService.class);
     ;
 
-    public PostService(PostRepository postRepository, CommentRepository commentRepository, ModelMapper modelMapper) {
+    public PostService(PostRepository postRepository, ModelMapper modelMapper) {
         this.postRepository = postRepository;
-        this.commentRepository = commentRepository;
         this.modelMapper = modelMapper;
     }
 

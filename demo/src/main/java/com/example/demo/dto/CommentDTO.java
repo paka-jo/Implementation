@@ -1,14 +1,34 @@
 package com.example.demo.dto;
 
+import java.time.LocalDateTime;
+
 public class CommentDTO {
 
+    private Long postId;
     private Long commentId;
     private Long userId;
     private String userNickname;
     private String commentContent;
+    private LocalDateTime commentCreatedAt;
 
 
     public CommentDTO () {}
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public LocalDateTime getCommentCreatedAt() {
+        return commentCreatedAt;
+    }
+
+    public void setCommentCreatedAt(LocalDateTime commentCreatedAt) {
+        this.commentCreatedAt = commentCreatedAt;
+    }
 
     public Long getCommentId() {
         return commentId;

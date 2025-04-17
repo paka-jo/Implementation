@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity(name="comments")
 @Table
 @NoArgsConstructor
@@ -22,13 +24,16 @@ public class CommentEntity {
 
 
     @Column(name="User_id") // 회원 아이디
-    private String UserId;
+    private String userId;
 
     @Column(name="comment_content")
     private String commentContent;
 
     @Column(name="user_nickname")
-    private String UserNickname;
+    private String userNickname;
+
+    @Column(name="comment_createdAt")
+    private LocalDateTime commentCreatedAt;
 
     @ManyToOne
     @JoinColumn(name = "post_id")

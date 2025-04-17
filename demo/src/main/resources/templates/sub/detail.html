@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>게시물 상세</title>
     <style>
         body {
@@ -24,6 +24,9 @@
             color: #333;
         }
 
+        p.content {
+            height: 600px;
+        }
         strong {
             color: #555;
         }
@@ -52,6 +55,33 @@
             padding: 20px;
             background-color: #f9fbff;
         }
+        textarea {
+            border: 1.5px rgb(68, 136, 244) solid;
+            width: 600px;
+            height: 200px;
+            border-radius: 5px;
+            padding-left: 10px;
+            padding-top: 10px;
+            resize: none;
+        }
+        input[type="text"] {
+            border: 1.5px rgb(68, 136, 244) solid;
+            width: 160px;
+            height: 30px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+        input[type="submit"]:active {
+            width: 100px;
+            height: 40px;
+            font-size: 15px;
+            border: 0;
+            border-radius: 5px;
+            outline: 1.5px rgb(27, 76, 155) solid;
+            padding-left: 10px;
+            background-color: rgb(68, 136, 244);
+        }
+
     </style>
 </head>
 <body>
@@ -59,11 +89,30 @@
     <h2 th:text="${post.postTitle}">제목</h2>
     <h2 th:text="${post.userNickname}">닉네임</h2>
 
-    <p><strong>작성일:</strong> <span th:text="${#temporals.format(post.postCreatedAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
-    <hr>
-    <p th:text="${post.postContent}">내용</p>
+    <p>
+        <strong>작성일:</strong>
+        <span
+                th:text="${#temporals.format(post.postCreatedAt, 'yyyy-MM-dd HH:mm:ss')}"
+        ></span>
+    </p>
+    <hr />
+    <p class="content" th:text="${post.postContent}">내용</p>
 
-    <a href="/sub/list">← 목록으로 돌아가기</a>
+    <p>
+        <strong>댓글</strong>
+    </p>
+    <tr th:each="comment : ${commentList}" class="commenbody">
+        <td th:text="${comment.userNickname}"></td>
+    <tr><td class="header">닉네임</td></tr>
+    <tr><td><input type="text" placeholder="닉네임을 입력하세요" name="userNickname"></td></tr>
+    <tr><td class="header"></td></tr>
+    <tr><td><textarea placeholder="내용을 입력하세요" name="commentContent"></textarea></td></tr>
+    <tr><td><input type="submit" value="등록" onclick="submitAndRedirect()" /></td></tr>
+    </tr>
+
+    <p>
+        <a class="return" href="/sub/list"> 목록으로 돌아가기</a></p>
+
 </div>
 </body>
 </html>

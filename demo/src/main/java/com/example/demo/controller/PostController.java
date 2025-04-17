@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.dto.CommentDTO;
 import com.example.demo.dto.PostDTO;
+import com.example.demo.service.CommentService;
 import com.example.demo.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -14,13 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Controller
+@Controller("postController")
 @RequestMapping("/sub")
 @RequiredArgsConstructor
 public class PostController {
     private static final Logger logger = LoggerFactory.getLogger(PostController.class);
 
     private final PostService postService;
+    private final CommentService commentService;
 
     @GetMapping("/list") // 게시물 목록
     public String findPostList(Model model) {
@@ -72,11 +75,20 @@ public class PostController {
             model.addAttribute("errorMessage", "게시물을 불러오는 데 실패했습니다.");
             return "error";
         }
-
     }
-
-
+    @PostMapping("/detail/{postId}/comments")
+    public String createComment(@PathVariable("postId") Long postId, @ModelAttribute CommentDTO commentDTO, Model model) {
+        try {
+            commentDTO.setPostId(postId);
+            commentService.saveComment(commentDTO);
+            return "redirect:/sub/detail/" + postId;
+        } catch (Exception e) {
+            logger.error("Error creating comment", e);
+            model.addAttribute("errorMessage", "댓글 작성 중 오류가 발생했습니다.");
+            return "error";
+        }
     }
+}
 
 
 
